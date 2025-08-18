@@ -54,15 +54,63 @@
         <h1 class="text-4xl font-bold text-teal-400 mb-4">Major Causations Of The Rise Of Achilles Tears In The NBA</h1>
         <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
         <p class="text-lg text-slate-400">
-            Insert Project Overview
+            This project, "An Exploratory Analysis of Player Load and Schedule Characteristics Associated with NBA Achilles Tendon Tears," was initiated to investigate the complex relationship between schedule intensity, player workload, and the risk of season-ending injuries, specifically Achilles tendon tears, in the NBA. The initial research question aimed to determine if factors such as game length, season duration, game pace, or player minutes could reduce season-ending injuries. However, due to the limited number of Achilles tears, the project's scope was adapted to an exploratory analysis. The primary objective was to analyze historical injury trends and identify potential links between player load, schedule characteristics, and increased injury risk. The goal was to provide descriptive and observational insights into the factors surrounding these devastating injuries and the rise of these injuries in the NBA.
         </p>
         <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
         <p class="text-lg text-slate-400">
-            Insert Data & Methodology Overview Overview
+            The project's data was primarily scraped from the NBA API. An initial CSV file containing basic information about Achilles tears from 2020 through 2025—including player name, date of injury, time into game, type of game, and opponent—was used to guide the data collection process. This enabled the scraping of additional, more granular statistics for those specific players from the NBA API.
+    
+            <n>The scraped data included:</n>
+            
+            <ul> 
+            <li>Games played before injury</li>
+            
+            <li>Average minutes per game</li>
+            
+            <li>Minutes in the last week and last month</li>
+            
+            <li>Rest days before injury</li>
+            
+            <li>Team pace and opponent pace</li>
+            
+            <li>Rolling averages for minutes, field goals, and load score over the last 5 games</li>
+            
+            <li>Rolling minutes over the last 10 and 15 games</li>
+            
+            <li>Standard deviation of minutes over the last 10 games</li>
+            
+            <li>Indicators for back-to-back games and "3 games in 4 days" situations</li>
+            
+            </ul>
+            
+            After data scraping, time-to-injury information, which was initially in text format, was converted into a numeric variable for analysis. Finally, a correlation matrix was created for the numeric variables to explore relationships between the collected metrics.
+            
+            <n> The methodology employed was primarily descriptive and observational due to the small sample size of only seven Achilles tears. The analysis was structured around three key areas: </n>
+    
+            <ul>
+            
+            <li><b>Overview and Team Analysis: </b>Examined which teams and players were most affected by Achilles tears. The analysis focused on teams with multiple occurrences and compared their characteristics, such as team pace, to the league average. </li>
+            
+            <li><b>Player and Load Minutes Analysis:</b> Investigated the workload of players who sustained Achilles tears. This included analyzing their average workload, workload jumps prior to the injury, and the standard deviation of minutes played to assess workload consistency.</li>
+            
+            <li>Scheduling Factors Analysis: Explored the impact of scheduling on injury risk. This involved looking at rest days, back-to-back games, and the pace of play for both the player's team and the opposing team.</li>
+            </ul>
+               
+            A key limitation was the lack of available data on player activities outside of official games and practices, such as strength training and personal life, which could also contribute to player load. Additionally, the small sample size of Achilles tears made it impossible to apply typical machine learning techniques or establish causation. The findings are therefore observational and not generalizable for predictive modeling.
+
         </p>
         <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
         <p class="text-lg text-slate-400">
-            Insert Key Findings & Visualizations
+            The exploratory analysis yielded several key findings, although they are not statistically significant due to the small sample size.
+            <ul>
+                <li><b>Injury Timing and Prior Conditions:</b> Achilles tears occurred throughout the season, but a significant proportion (3 out of 7) happened during the playoffs. A notable finding was that all three players injured during the playoffs were returning from or playing through another injury
+                    (Damian Lillard was returning from a DVT (deep vein thrombosis) in the right calf, a reporter noticed Jayson Tatum playing through some limping prior to his tear (was playing though an undisclosed injury), and Tyrese Haliburton was playing through a calf strain). Similarly, players with Achilles tears earlier in the season were also found to be playing with pre-existing leg-related injuries, particularly in the calf. This suggests a strong correlation between playing through an injury and the subsequent risk of an Achilles tendon tear.</li>
+                <li><b>Team Pace:</b> The team pace seems to be a significant factor. The average pace of teams with an Achilles tear was generally above the league average of 100 possessions per game. The Indiana Pacers, for example, had a team pace of 101.9 and were involved in 4 out of the 7 Achilles tears as either the home team or the opponent. This suggests that a faster pace of play could contribute to an increased risk of injury.</li>
+                <li><b>Player Workload and Consistency:</b> The average workload (minutes per game) for the players who sustained an Achilles tear in the 2024-2025 season was 29.78, which is higher than the average workload of players who received these injuries in the past. Additionally, the workload for these players did not fluctuate much from game to game, with the standard deviation of minutes in the last 10 games being at or below 5.5 for most players. This suggests that a consistently high workload, rather than sudden jumps, may be a contributing factor.</li>
+                <li><b>Scheduling and Rest: </b>The number of rest days and the occurrence of back-to-back games did not appear to be a primary factor in the Achilles tears analyzed. Most players had the typical two rest days, and none of the injuries occurred during a back-to-back situation or within a "3 games in 4 days" scenario.</li>
+                <li><b>Limitations: </b>The findings are purely descriptive and observational. The extremely low sample size of Achilles tears (7 total) makes it impossible to establish causation or build a predictive model. The results are not generalizable and serve only as a starting point for further research. Future work could involve analyzing a larger dataset of all types of NBA injuries from 2020-2025 to build a more robust predictive model. Another approach could be to train a model to compare Achilles tear data against data from non-injured players to validate the observations made in this project.</li>
+            </ul>
+            Insert Visualizations
         </p>
         <div class="mt-8">
             Insert Link to code repo 
