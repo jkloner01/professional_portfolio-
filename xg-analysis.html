@@ -121,5 +121,16 @@
                 }
             });
         </script>
+         <script>
+            function toggleNotebook(notebookId) {
+                var notebookContainer = document.getElementById(notebookId);
+
+                if (notebookContainer.style.display == "none" || notebookContainer.style.display == "") {
+                    notebookContainer.style.display = "block"
+                } else {
+                    notebookContainer.style.display = "none"
+                }
+            }
+        </script>
     </body>
 </html>
