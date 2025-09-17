@@ -17,13 +17,6 @@
                 color: #e2e8f0;
             }
         </style>
-         <style>
-            .notebook-container {
-                display: none;
-                transition: all 0.5s ease-in-out;
-                overflow: hidden;
-            }
-        </style>
         
     </head>
     <body>
@@ -95,10 +88,7 @@
             </ul>
         </p>
         <div class="mt-8">
-           <button onclick="toggleNotebook('nhlNotebook')">Show/Hide Notebook</button>
-           <div id="nhlNotebook" class="notebook-container">
-               <iframe src = "nhl.html" style="width:100%; height:800px; border:none;"></iframe>
-           </div>
+           <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nhl.ipynb">Click here to view the code repo for this project and interact with the dashboard.</a>
         </div>
        </section>
     </main>
@@ -120,17 +110,6 @@
                     });
                 }
             });
-        </script>
-         <script>
-            function toggleNotebook(notebookId) {
-                var notebookContainer = document.getElementById(notebookId);
-
-                if (notebookContainer.style.display == "none" || notebookContainer.style.display == "") {
-                    notebookContainer.style.display = "block"
-                } else {
-                    notebookContainer.style.display = "none"
-                }
-            }
         </script>
     </body>
 </html>
