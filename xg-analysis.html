@@ -61,7 +61,7 @@
         <p class="text-lg text-slate-400">
             The project's methodology was a comprehensive, multi-stage process that encompassed data collection, cleaning, modeling, and visualization.
             <ul>
-                <li><b>Data Collection:</b> The process began by systematically scraping game-level data from the NHL API. A Python script was developed to first scrape game IDs from the official schedule API for a given season. For each game ID, it then accessed the box score and, most critically, the play-by-play data, which contains granular details for every shot taken.</li>
+                <li><b>Data Collection:</b> The process began by systematically scraping game level data from the NHL API. A Python script was developed to first scrape game IDs from the official schedule API for a given season. For each game ID, it then accessed the box score and, most critically, the play-by-play data, which contains granular details for every shot taken.</li>
                 <n></n>
                 <li><b>Data Cleaning and Feature Engineering:</b> After collecting the raw data, the information was cleaned and structured into a pandas DataFrame. Rows with missing data were dropped to ensure model integrity. Crucially, two new variables, distance_to_goal and angle_to_goal, were calculated for each shot using its x_coord and y_coord. These two features are fundamental to predicting shot quality. The shot_type variable was converted to a categorical format for use in the model.</li>
                 <n></n>
