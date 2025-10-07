@@ -52,94 +52,45 @@
 
     <main class="container mx-auto px-4 py-8">
         <section>
-            <h1 class="text-4xl font-bold text-teal-500 mb-4">Major Causations Of The Rise Of Achilles Tears In The NBA</h1>
+                <h1 class="text-4xl font-bold text-teal-400 mb-4">Expected Goals (xG) + Shot Chart In The NHL</h1>
+                <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
+                <p class="text-lg text-slate-400">
+                    This project, titled "Measuring Shot Quality: An xG Analysis in NHL," successfully developed and implemented a sophisticated method for evaluating offensive efficiency in the National Hockey League (NHL). The core objective was to move beyond traditional metrics like goals and shots by modeling and visualizing Expected Goals (xG). Expected Goals provides a measure of shot quality, representing the probability of a shot becoming a goal based on a variety of factors. The project's outcome is a complete data pipeline, from raw data acquisition to a functional, interactive dashboard that allows for a deeper, more analytical understanding of scoring opportunities for teams and players.
+                </p>
+                <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
+                <p class="text-lg text-slate-400">
+                    The project's methodology was a comprehensive, multi-stage process that encompassed data collection, cleaning, modeling, and visualization.
+                    <ul>
+                        <li><b>Data Collection:</b> The process began by systematically scraping game level data from the NHL API. A Python script was developed to first scrape game IDs from the official schedule API for a given season. For each game ID, it then accessed the box score and, most critically, the play-by-play data, which contains granular details for every shot taken.</li>
+                        <n></n>
+                        <li><b>Data Cleaning and Feature Engineering:</b> After collecting the raw data, the information was cleaned and structured into a pandas DataFrame. Rows with missing data were dropped to ensure model integrity. Crucially, two new variables, distance_to_goal and angle_to_goal, were calculated for each shot using its x_coord and y_coord. These two features are fundamental to predicting shot quality. The shot_type variable was converted to a categorical format for use in the model.</li>
+                        <n></n>
+                        <li><b>xG Model Building and Evaluation:</b> A Logistic Regression model was chosen to calculate Expected Goals. The dataset was split into training (80%) and testing (20%) sets to ensure the model's performance was evaluated on unseen data. The model was trained to predict the binary outcome (is_goal or not) based on the engineered features (distance_to_goal, angle_to_goal, and one-hot encoded shot_type). The model's performance was evaluated using:</li>
+                        <ul>
+                            <li><b>Accuracy:</b> The percentage of correct predictions.</li>
+                            <n></n>
+                            <li><b>Log Loss:</b> A metric that penalizes inaccurate and overconfident predictions.</li>
+                            <n></n>
+                            <li><b>Calibration Plot:</b> A crucial visualization that assessed the model's reliability, showing how well the predicted probabilities matched the actual fraction of goals.</li>
+                        </ul>
+                        <n></n>
+                        <li><b>Dashboard Development:</b> A dynamic and interactive dashboard was built using the Plotly Dash framework. The dashboard visualizes every shot on a diagram of an NHL rink. It features dropdown menus that allow users to filter the data by team, player, and shot type. The visualization is enhanced by using marker size to represent the xG value (larger circles indicate a higher chance of scoring) and color to represent the outcome (green for goals, red for misses).</li
         
-            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
+                    </ul>
+                </p>
+                <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
+                <p class="text-lg text-slate-400">
+                    The project successfully delivered a robust and well-calibrated Expected Goals model and a powerful visualization tool to explore its results.
+                    <ul>
+                        <li> <b>Effective xG Model:</b> The logistic regression model proved to be highly effective at predicting shot outcomes. The model achieved a high accuracy rate of approximately 92.76%. More importantly, the low log loss score and the well-aligned calibration plot confirmed that the model's predictions were not only accurate but also reliable, meaning a shot with a predicted xG of 0.10 was indeed converted into a goal about 10% of the time. This demonstrates the model's ability to accurately quantify shot quality.</li>
+                        <n></n>
+                        <li><b>Actionable Insights through Visualization:</b> The interactive dashboard serves as a key finding in itself. It allows users to gain immediate, visual insights that are difficult to discern from raw numbers. For instance, a user can quickly identify areas on the ice with a high density of high-xG shots or analyze a specific player's shot profile to see if they are consistently generating high-quality opportunities. This interactive exploration confirms that shot location and type are indeed the most significant drivers of shot quality.</li>
+                        <n></n>
+                        <li><b>Conclusion: </b>The project successfully demonstrated that Expected Goals is a superior metric for evaluating offensive efficiency in the NHL compared to traditional statistics. By building a well-calibrated model and a user-friendly dashboard, the project created a powerful tool for analysts, coaches, and fans to understand the true nature of offensive production and shot quality in the sport.</li>
         
-            <p class="text-lg text-gray-200">
-                This project, "An Exploratory Analysis of Player Load and Schedule Characteristics Associated with NBA Achilles Tendon Tears," was initiated to investigate the complex relationship between schedule intensity, player workload, and the risk of season ending injuries, specifically Achilles tendon tears, in the NBA. The initial research question aimed to determine if factors such as game length, season duration, game pace, or player minutes could reduce season-ending injuries. However, due to the limited number of Achilles tears, the project's scope was adapted to an exploratory analysis. The primary objective was to analyze historical injury trends and identify potential links between player load, schedule characteristics, and increased injury risk. The goal was to provide descriptive and observational insights into the factors surrounding these devastating injuries and the rise of these injuries in the NBA.
-            </p>
-        
-            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
-        
-            <p class="text-lg text-gray-200">
-                The project's data was primarily scraped from the NBA API. An initial CSV file containing basic information about Achilles tears from 2020 through 2025—including player name, date of injury, time into game, type of game, and opponent—was used to guide the data collection process. This enabled the scraping of additional, more granular statistics for those specific players from the NBA API.
-            </p>
-           
-            <p class="text-lg text-gray-200">
-                <n>The scraped data included:</n>
-            </p>
-                
-            <ul class="text-lg text-gray-200 list-disc ml-8"> 
-                <li>Games played before injury</li>
-                <li>Average minutes per game</li>
-                <li>Minutes in the last week and last month</li>
-                <li>Rest days before injury</li>
-                <li>Team pace and opponent pace</li>
-                <li>Rolling averages for minutes, field goals, and load score over the last 5 games</li>
-                <li>Rolling minutes over the last 10 and 15 games</li>
-                <li>Standard deviation of minutes over the last 10 games</li>
-                <li>Indicators for back-to-back games and "3 games in 4 days" situations</li>
-            </ul>
-                
-            <p class="text-lg text-gray-200">
-                After data scraping, time-to-injury information, which was initially in text format, was converted into a numeric variable for analysis. Finally, a correlation matrix was created for the numeric variables to explore relationships between the collected metrics.
-            </p>
-                
-            <p class="text-lg text-gray-200">
-                <n> The methodology employed was primarily descriptive and observational due to the small sample size of only seven Achilles tears. The analysis was structured around three key areas: </n>
-            </p>
-           
-            <ul class="text-lg text-gray-200 list-disc ml-8">
-                
-                <li>
-                    <b>Overview and Team Analysis: </b>Examined which teams and players were most affected by Achilles tears. The analysis focused on teams with multiple occurrences and compared their characteristics, such as team pace, to the league average.
-                </li>
-                <br>
-                <li>
-                    <b>Player and Load Minutes Analysis:</b> Investigated the workload of players who sustained Achilles tears. This included analyzing their average workload, workload jumps prior to the injury, and the standard deviation of minutes played to assess workload consistency.
-                </li>
-                <br>
-                <li>
-                    <b>Scheduling Factors Analysis:</b> Explored the impact of scheduling on injury risk. This involved looking at rest days, back-to-back games, and the pace of play for both the player's team and the opposing team.
-                </li>
-            </ul>
-                  
-            <p class="text-lg text-gray-200">
-                A key limitation was the lack of available data on player activities outside of official games and practices, such as strength training and personal life, which could also contribute to player load. Additionally, the small sample size of Achilles tears made it impossible to apply typical machine learning techniques or establish causation. The findings are therefore observational and not generalizable for predictive modeling.
-            </p>
-        
-            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
-        
-            <p class="text-lg text-gray-200">
-                The exploratory analysis yielded several key findings, although they are not statistically significant due to the small sample size.
-            </p>
-        
-            <ul class="text-lg text-gray-200 list-disc ml-8">
-                <li>
-                    <b>Injury Timing and Prior Conditions:</b> Achilles tears occurred throughout the season, but a significant proportion (3 out of 7) happened during the playoffs. A notable finding was that all three players injured during the playoffs were returning from or playing through another injury (Damian Lillard was returning from a DVT (deep vein thrombosis) in the right calf, a reporter noticed Jayson Tatum playing through some limping prior to his tear (was playing though an undisclosed injury), and Tyrese Haliburton was playing through a calf strain). Similarly, players with Achilles tears earlier in the season were also found to be playing with preexisting leg related injuries, particularly in the calf. This suggests a strong correlation between playing through an injury and the subsequent risk of an Achilles tendon tear.
-                </li>
-                <br>
-                <li>
-                    <b>Team Pace:</b> The team pace seems to be a significant factor. The average pace of teams with an Achilles tear was generally above the league average of 100 possessions per game. The Indiana Pacers, for example, had a team pace of 101.9 and were involved in 4 out of the 7 Achilles tears as either the home team or the opponent. This suggests that a faster pace of play could contribute to an increased risk of injury.
-                </li>
-                <br>
-                <li>
-                    <b>Player Workload and Consistency:</b> The average workload (minutes per game) for the players who sustained an Achilles tear in the 2024-2025 season was 29.78, which is higher than the average workload of players who received these injuries in the past. Additionally, the workload for these players did not fluctuate much from game to game, with the standard deviation of minutes in the last 10 games being at or below 5.5 for most players. This suggests that a consistently high workload, rather than sudden jumps, may be a contributing factor.
-                </li>
-                <br>
-                <li>
-                    <b>Scheduling and Rest: </b>The number of rest days and the occurrence of back-to-back games did not appear to be a primary factor in the Achilles tears analyzed. Most players had the typical two rest days, and none of the injuries occurred during a back-to-back situation or within a "3 games in 4 days" scenario.
-                </li>
-                <br>
-                <li>
-                    <b>Limitations: </b>The findings are purely descriptive and observational. The extremely low sample size of Achilles tears (7 total) makes it impossible to establish causation or build a predictive model. The results are not generalizable and serve only as a starting point for further research. Future work could involve analyzing a larger dataset of all types of NBA injuries from 2020-2025 to build a more robust predictive model. Another approach could be to train a model to compare Achilles tear data against data from noninjured players to validate the observations made in this project.
-                </li>
-            </ul>
-        
-            <div class="mt-8">
-                <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nhl.ipynb" class="text-darkred-400">Click here to review the code repo for this project. </a>
-            </div>
+                    <div class="mt-8">
+                        <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nhl.ipynb" class="text-darkred-400">Click here to review the code repo for this project. </a>
+                    </div>
         </section>
     </main>
         <script>
