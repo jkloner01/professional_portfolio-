@@ -51,46 +51,76 @@
     </header>
 
     <main class="container mx-auto px-4 py-8">
-       <section>
-        <h1 class="text-4xl font-bold text-teal-400 mb-4">Did COVID Kill Home Field Advantage In The NFL</h1>
-        <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
-        <p class="text-lg text-slate-400">
-            This project, "Did COVID Kill Home Field Advantage? (NFL)," was an exploratory analysis to determine the effect of the COVID-19 pandemic on home field advantage in the National Football League (NFL). The core question was whether the absence of or limited in person crowds during the pandemic significantly impacted a home team's win percentage. The analysis sought to compare home win rates across three distinct periods: pre-COVID, during COVID, and post-COVID.
-        </p>
-        <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
-        <p class="text-lg text-slate-400">
-            The project's data was primarily focused on the NFL. The NFL data was collected by scraping game-by-game attendance records and game results from Pro Football Reference for the seasons spanning 2018 to 2024. 
-            A key data preparation step involved manipulating the scraped attendance data, which was organized by week, to align with the game-by-game records. A "winner" column was added to the game data based on the final scores.
-            After this preparation step, the data was divided up into pre, during, and post covid categories based on the dates of the season then home wins, away wins, ties, and win percentages were calculated for each "era".
-
-            <n>The primary methodology involved using linear regression to assess the significance of different variables on a team's home win percentage. The analysis was conducted in two phases to address potential multicollinearity issues:</n>
-
-            <ol>
-                <li> <b>Phase 1 (with mean_attendance):</b> The initial model tested the direct effect of crowd size (mean_attendance) and the different eras (pre_covid, post_covid) on home win percentage. The goal was to see if crowd size was a significant factor and if there was a difference in win percentage across the eras, even after accounting for attendance.</li>
-                <n></n>
-                <li> <b>Phase 2 (without mean_attendance): </b>Due to the high correlation between attendance and the COVID era, a second analysis was performed. This model, which excluded the mean_attendance variable, directly tested the impact of the pre-COVID and post-COVID eras on home win percentage against the "during COVID" era. This approach was more direct in addressing the original research question and mitigating the multicollinearity issue.</li>
+        <section>
+            <h1 class="text-4xl font-bold text-blue-500 mb-4">Did COVID Kill Home Field Advantage In The NFL</h1>
+        
+            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
+        
+            <p class="text-lg text-gray-200">
+                This project, "Did COVID Kill Home Field Advantage? (NFL)," was an exploratory analysis to determine the effect of the COVID-19 pandemic on home field advantage in the National Football League (NFL). The core question was whether the absence of or limited in person crowds during the pandemic significantly impacted a home team's win percentage. The analysis sought to compare home win rates across three distinct periods: **pre-COVID, during COVID, and post-COVID**.
+            </p>
+        
+            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
+        
+            <p class="text-lg text-gray-200">
+                The project's data was primarily focused on the NFL. The NFL data was collected by scraping game-by-game attendance records and game results from Pro Football Reference for the seasons spanning 2018 to 2024.
+            </p>
+            <p class="text-lg text-gray-200">
+                A key data preparation step involved manipulating the scraped attendance data, which was organized by week, to align with the game-by-game records. A "winner" column was added to the game data based on the final scores.
+            </p>
+            <p class="text-lg text-gray-200">
+                After this preparation step, the data was divided up into pre, during, and post covid categories based on the dates of the season then home wins, away wins, ties, and win percentages were calculated for each "era".
+            </p>
+        
+            <p class="text-lg text-gray-200">
+                <n>The primary methodology involved using **linear regression** to assess the significance of different variables on a team's home win percentage. The analysis was conducted in two phases to address potential multicollinearity issues:</n>
+            </p>
+        
+            <ol class="text-lg text-gray-200 list-decimal ml-8">
+                <li>
+                    <b>Phase 1 (with mean_attendance):</b> The initial model tested the direct effect of crowd size (mean_attendance) and the different eras (pre_covid, post_covid) on home win percentage. The goal was to see if crowd size was a significant factor and if there was a difference in win percentage across the eras, even after accounting for attendance.
+                </li>
+                <br>
+                <li>
+                    <b>Phase 2 (without mean_attendance): </b>Due to the high correlation between attendance and the COVID era, a second analysis was performed. This model, which excluded the mean_attendance variable, directly tested the impact of the pre-COVID and post-COVID eras on home win percentage against the "during COVID" era. This approach was more direct in addressing the original research question and mitigating the multicollinearity issue.
+                </li>
             </ol>
-            <n> The analysis also included a descriptive summary of win percentages for individual teams across the three eras to identify any team-specific trends.</n>
-        </p>
-        <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
-        <p class="text-lg text-slate-400">
-            The statistical analysis and descriptive findings suggest that for the NFL COVID-19 did not significantly "kill" home-field advantage.
-            <ul>
-                <li> <b>No Significant Overall Effect:</b> The initial linear regression model, which included mean_attendance and era variables, showed no significant effect. The p-values for mean_attendance (p=0.501), pre_covid (p=0.436), and post_covid (p=0.215) were all well above the conventional significance threshold of 0.05. This indicated that, when considering the entire league, there was no statistically significant change in home win percentage based on crowd size or the COVID-19 era.</li>
-                <n></n>
-                <li><b>Home Win Percentage Trends:</b> When retested without the mean_attendance variable, the results continued to show no significant difference between the pre-COVID and during-COVID eras (p=0.237). Interestingly, the p-value for the post-COVID era was 0.066, which is close to the 0.05 threshold. The coefficient of 0.0770 suggests a potential 7.7% increase in home win percentage in the post-COVID era, which could be an area for future research.</li>
-                <n></n>
-                <li><b>Team-Specific Observations:</b> While the overall league-wide analysis showed no significant change, a few individual teams exhibited unique trends. Some teams, like the Arizona Cardinals and Dallas Cowboys, had a higher away win percentage during the COVID era. Conversely, teams like the Baltimore Ravens and Kansas City Chiefs saw a higher home win percentage during the same period. The Buffalo Bills demonstrated an increase in home win percentage during COVID that continued to rise post-COVID. These team-specific anomalies suggest that other factors, beyond crowd attendance, were at play.</li>
-                <n></n>
-                <li><b>Summary Takeaways:</b> The results consistently show that home win percentage was greater than away win percentage across all three eras (pre, during, and post-COVID). The main takeaway is that, from a league-wide perspective, the presence or absence of a crowd did not have a statistically significant impact on a team's ability to win at home. The findings suggest that other, unanalyzed factors are likely more influential in determining home-field advantage.</li>
-                <n></n>
-                <li><b>Limitations:</b> The project's findings are subject to several limitations. The COVID-19 era provided a very limited dataset, spanning only two seasons, which restricts the statistical power of the analysis. Furthermore, teams varied widely in their COVID-era protocols, with some allowing limited fans and others having no fans at all. The analysis did not account for these variations. Other factors that could influence home-field advantage, such as team roster changes, weather conditions at home stadiums, and travel logistics, were not included in the analysis. Future research could explore these variables to provide a more comprehensive understanding.</li>
+            <p class="text-lg text-gray-200">
+                <n> The analysis also included a descriptive summary of win percentages for individual teams across the three eras to identify any team-specific trends.</n>
+            </p>
+        
+            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
+        
+            <p class="text-lg text-gray-200">
+                The statistical analysis and descriptive findings suggest that for the NFL COVID-19 did not significantly "kill" home-field advantage.
+            </p>
+        
+            <ul class="text-lg text-gray-200 list-disc ml-8">
+                <li>
+                    <b>No Significant Overall Effect:</b> The initial linear regression model, which included mean_attendance and era variables, showed no significant effect. The **p-values** for mean_attendance (p=0.501), pre_covid (p=0.436), and post_covid (p=0.215) were all well above the conventional significance threshold of 0.05. This indicated that, when considering the entire league, there was no statistically significant change in home win percentage based on crowd size or the COVID-19 era.
+                </li>
+                <br>
+                <li>
+                    <b>Home Win Percentage Trends:</b> When retested without the mean_attendance variable, the results continued to show no significant difference between the pre-COVID and during-COVID eras (p=0.237). Interestingly, the p-value for the post-COVID era was **0.066**, which is close to the 0.05 threshold. The coefficient of 0.0770 suggests a potential **7.7% increase** in home win percentage in the post-COVID era, which could be an area for future research.
+                </li>
+                <br>
+                <li>
+                    <b>Team-Specific Observations:</b> While the overall league-wide analysis showed no significant change, a few individual teams exhibited unique trends. Some teams, like the **Arizona Cardinals** and **Dallas Cowboys**, had a higher away win percentage during the COVID era. Conversely, teams like the **Baltimore Ravens** and **Kansas City Chiefs** saw a higher home win percentage during the same period. The **Buffalo Bills** demonstrated an increase in home win percentage during COVID that continued to rise post-COVID. These team-specific anomalies suggest that other factors, beyond crowd attendance, were at play.
+                </li>
+                <br>
+                <li>
+                    <b>Summary Takeaways:</b> The results consistently show that home win percentage was **greater than away win percentage** across all three eras (pre, during, and post-COVID). The main takeaway is that, from a league-wide perspective, the presence or absence of a crowd did not have a **statistically significant impact** on a team's ability to win at home. The findings suggest that other, unanalyzed factors are likely more influential in determining home-field advantage.
+                </li>
+                <br>
+                <li>
+                    <b>Limitations:</b> The project's findings are subject to several limitations. The COVID-19 era provided a very limited dataset, spanning only two seasons, which restricts the statistical power of the analysis. Furthermore, teams varied widely in their COVID-era protocols, with some allowing limited fans and others having no fans at all. The analysis did not account for these variations. Other factors that could influence home-field advantage, such as team roster changes, weather conditions at home stadiums, and travel logistics, were not included in the analysis. Future research could explore these variables to provide a more comprehensive understanding.
+                </li>
             </ul>
-        </p>
-        <div class="mt-8">
-          <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nfl.ipynb">Click here to view the code repo for this project.</a>
-        </div>
-       </section>
+        
+            <div class="mt-8">
+                <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nfl.ipynb" class="text-red-400">Click here to view the code repo for this project.</a>
+            </div>
+        </section>
     </main>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
