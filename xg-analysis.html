@@ -52,45 +52,60 @@
 
     <main class="container mx-auto px-4 py-8">
         <section>
-                <h1 class="text-4xl font-bold text-teal-400 mb-4">Expected Goals (xG) + Shot Chart In The NHL</h1>
-                <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
-                <p class="text-lg text-slate-400">
-                    This project, titled "Measuring Shot Quality: An xG Analysis in NHL," successfully developed and implemented a sophisticated method for evaluating offensive efficiency in the National Hockey League (NHL). The core objective was to move beyond traditional metrics like goals and shots by modeling and visualizing Expected Goals (xG). Expected Goals provides a measure of shot quality, representing the probability of a shot becoming a goal based on a variety of factors. The project's outcome is a complete data pipeline, from raw data acquisition to a functional, interactive dashboard that allows for a deeper, more analytical understanding of scoring opportunities for teams and players.
-                </p>
-                <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
-                <p class="text-lg text-slate-400">
-                    The project's methodology was a comprehensive, multi-stage process that encompassed data collection, cleaning, modeling, and visualization.
-                    <ul>
-                        <li><b>Data Collection:</b> The process began by systematically scraping game level data from the NHL API. A Python script was developed to first scrape game IDs from the official schedule API for a given season. For each game ID, it then accessed the box score and, most critically, the play-by-play data, which contains granular details for every shot taken.</li>
-                        <n></n>
-                        <li><b>Data Cleaning and Feature Engineering:</b> After collecting the raw data, the information was cleaned and structured into a pandas DataFrame. Rows with missing data were dropped to ensure model integrity. Crucially, two new variables, distance_to_goal and angle_to_goal, were calculated for each shot using its x_coord and y_coord. These two features are fundamental to predicting shot quality. The shot_type variable was converted to a categorical format for use in the model.</li>
-                        <n></n>
-                        <li><b>xG Model Building and Evaluation:</b> A Logistic Regression model was chosen to calculate Expected Goals. The dataset was split into training (80%) and testing (20%) sets to ensure the model's performance was evaluated on unseen data. The model was trained to predict the binary outcome (is_goal or not) based on the engineered features (distance_to_goal, angle_to_goal, and one-hot encoded shot_type). The model's performance was evaluated using:</li>
-                        <ul>
-                            <li><b>Accuracy:</b> The percentage of correct predictions.</li>
-                            <n></n>
-                            <li><b>Log Loss:</b> A metric that penalizes inaccurate and overconfident predictions.</li>
-                            <n></n>
-                            <li><b>Calibration Plot:</b> A crucial visualization that assessed the model's reliability, showing how well the predicted probabilities matched the actual fraction of goals.</li>
-                        </ul>
-                        <n></n>
-                        <li><b>Dashboard Development:</b> A dynamic and interactive dashboard was built using the Plotly Dash framework. The dashboard visualizes every shot on a diagram of an NHL rink. It features dropdown menus that allow users to filter the data by team, player, and shot type. The visualization is enhanced by using marker size to represent the xG value (larger circles indicate a higher chance of scoring) and color to represent the outcome (green for goals, red for misses).</li
+            <h1 class="text-4xl font-bold text-teal-400 mb-4">Expected Goals (xG) + Shot Chart In The NHL</h1>
         
+            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Project Overview </h2>
+            <p class="text-lg text-gray-200 mb-4">
+                This project, titled "Measuring Shot Quality: An xG Analysis in NHL," successfully developed and implemented a sophisticated method for evaluating offensive efficiency in the National Hockey League (NHL). The core objective was to move beyond traditional metrics like goals and shots by modeling and visualizing **Expected Goals (xG)**. Expected Goals provides a measure of shot quality, representing the probability of a shot becoming a goal based on a variety of factors.
+            </p>
+            <p class="text-lg text-gray-200">
+                The project's outcome is a complete data pipeline, from raw data acquisition to a functional, interactive dashboard that allows for a deeper, more analytical understanding of scoring opportunities for teams and players.
+            </p>
+        
+            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Data & Methodology </h2>
+            <p class="text-lg text-gray-200 mb-4">
+                The project's methodology was a comprehensive, multi-stage process that encompassed data collection, cleaning, modeling, and visualization.
+            </p>
+        
+            <ul class="text-lg text-gray-200 ml-6 list-disc">
+                <li class="mb-2">
+                    <b>Data Collection:</b> The process began by systematically scraping game level data from the **NHL API**. A Python script was developed to first scrape game IDs from the official schedule API for a given season. For each game ID, it then accessed the box score and, most critically, the play-by-play data, which contains granular details for every shot taken.
+                </li>
+                <li class="mb-2">
+                    <b>Data Cleaning and Feature Engineering:</b> After collecting the raw data, the information was cleaned and structured into a pandas DataFrame. Rows with missing data were dropped to ensure model integrity. Crucially, two new variables, `distance_to_goal` and `angle_to_goal`, were calculated for each shot using its x_coord and y_coord. These two features are fundamental to predicting shot quality. The `shot_type` variable was converted to a categorical format for use in the model.
+                </li>
+                <li class="mb-2">
+                    <b>xG Model Building and Evaluation:</b> A **Logistic Regression model** was chosen to calculate Expected Goals. The dataset was split into training (80%) and testing (20%) sets to ensure the model's performance was evaluated on unseen data. The model was trained to predict the binary outcome (`is_goal` or not) based on the engineered features (`distance_to_goal`, `angle_to_goal`, and one-hot encoded `shot_type`). The model's performance was evaluated using:
+                    <ul class="ml-6 list-circle mt-2">
+                        <li class="mb-1"><b>Accuracy:</b> The percentage of correct predictions.</li>
+                        <li class="mb-1"><b>Log Loss:</b> A metric that penalizes inaccurate and overconfident predictions.</li>
+                        <li><b>Calibration Plot:</b> A crucial visualization that assessed the model's reliability, showing how well the predicted probabilities matched the actual fraction of goals.</li>
                     </ul>
-                </p>
-                <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
-                <p class="text-lg text-slate-400">
-                    The project successfully delivered a robust and well-calibrated Expected Goals model and a powerful visualization tool to explore its results.
-                    <ul>
-                        <li> <b>Effective xG Model:</b> The logistic regression model proved to be highly effective at predicting shot outcomes. The model achieved a high accuracy rate of approximately 92.76%. More importantly, the low log loss score and the well-aligned calibration plot confirmed that the model's predictions were not only accurate but also reliable, meaning a shot with a predicted xG of 0.10 was indeed converted into a goal about 10% of the time. This demonstrates the model's ability to accurately quantify shot quality.</li>
-                        <n></n>
-                        <li><b>Actionable Insights through Visualization:</b> The interactive dashboard serves as a key finding in itself. It allows users to gain immediate, visual insights that are difficult to discern from raw numbers. For instance, a user can quickly identify areas on the ice with a high density of high-xG shots or analyze a specific player's shot profile to see if they are consistently generating high-quality opportunities. This interactive exploration confirms that shot location and type are indeed the most significant drivers of shot quality.</li>
-                        <n></n>
-                        <li><b>Conclusion: </b>The project successfully demonstrated that Expected Goals is a superior metric for evaluating offensive efficiency in the NHL compared to traditional statistics. By building a well-calibrated model and a user-friendly dashboard, the project created a powerful tool for analysts, coaches, and fans to understand the true nature of offensive production and shot quality in the sport.</li>
+                </li>
+                <li>
+                    <b>Dashboard Development:</b> A dynamic and interactive dashboard was built using the **Plotly Dash** framework. The dashboard visualizes every shot on a diagram of an NHL rink. It features dropdown menus that allow users to filter the data by team, player, and shot type. The visualization is enhanced by using marker size to represent the xG value (larger circles indicate a higher chance of scoring) and color to represent the outcome (green for goals, red for misses).
+                </li>
+            </ul>
         
-                    <div class="mt-8">
-                        <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nhl.ipynb" class="text-darkred-400">Click here to review the code repo for this project. </a>
-                    </div>
+            <h2 class="text-3xl font-semibold text-white mt-8 mb-4"> Key Findings & Visualizations </h2>
+            <p class="text-lg text-gray-200 mb-4">
+                The project successfully delivered a robust and well-calibrated Expected Goals model and a powerful visualization tool to explore its results.
+            </p>
+            <ul class="text-lg text-gray-200 ml-6 list-disc">
+                <li class="mb-2">
+                    <b>Effective xG Model:</b> The logistic regression model proved to be highly effective at predicting shot outcomes. The model achieved a high accuracy rate of approximately **92.76%**. More importantly, the low log loss score and the well-aligned calibration plot confirmed that the model's predictions were not only accurate but also reliable, meaning a shot with a predicted xG of $0.10$ was indeed converted into a goal about $10\%$ of the time. This demonstrates the model's ability to accurately quantify shot quality.
+                </li>
+                <li class="mb-2">
+                    <b>Actionable Insights through Visualization:</b> The interactive dashboard serves as a key finding in itself. It allows users to gain immediate, visual insights that are difficult to discern from raw numbers. For instance, a user can quickly identify areas on the ice with a high density of high-xG shots or analyze a specific player's shot profile to see if they are consistently generating high-quality opportunities. This interactive exploration confirms that **shot location and type** are indeed the most significant drivers of shot quality.
+                </li>
+                <li>
+                    <b>Conclusion:</b> The project successfully demonstrated that Expected Goals is a superior metric for evaluating offensive efficiency in the NHL compared to traditional statistics. By building a well-calibrated model and a user-friendly dashboard, the project created a powerful tool for analysts, coaches, and fans to understand the true nature of offensive production and shot quality in the sport.
+                </li>
+            </ul>
+        
+            <div class="mt-8">
+                <a href="https://colab.research.google.com/github//jkloner01/professional_portfolio-/blob/main/nhl.ipynb" class="text-darkred-400" style="color: darkred;">Click here to review the code repo for this project. </a>
+            </div>
         </section>
     </main>
         <script>
